@@ -1,5 +1,5 @@
 # Set the threshold (in percentage) when you want to receive the low disk space notification.
-$thresholdPercentage = 50
+$thresholdPercentage = 10
 
 # Get the drive with the lowest available space percentage.
 $lowDisk = Get-WmiObject Win32_LogicalDisk | Where-Object { $_.DriveType -eq 3 } |
@@ -11,10 +11,10 @@ $freeSpacePercentage = [math]::Round(($lowDisk.FreeSpace / $lowDisk.Size) * 100,
 # Email settings
 $smtpServer = "smtp.gmail.com"
 $smtpPort = 587
-$smtpUsername = "sakaewang9@gmail.com"
-$smtpPassword = "vvrjezjmbnwdpupv"
-$emailFrom = "sakaewang9@gmail.com"
-$emailTo = "ivanwang913@gmail.com"
+$smtpUsername = "senderemail"
+$smtpPassword = "password"
+$emailFrom = "senderemail"
+$emailTo = "receiveremail"
 $emailSubject = "Low Disk Space Alert"
 $emailBody = "The available disk space on drive $($lowDisk.DeviceID) is critically low. Free space: $freeSpacePercentage%"
 
